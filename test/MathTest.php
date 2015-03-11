@@ -17,6 +17,5 @@ class MathTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(2, Math::sum(1, 1));
 	}
-
 }
 

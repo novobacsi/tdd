@@ -16,10 +16,14 @@ class StringToArrayTest extends \PHPUnit_Framework_TestCase
 		$this->stringToArray = new StringToArray();
 	}
 
-	public function testEmptyInputReturnProperly()
+	/**
+	 * @dataProvider dataProviderInput
+	 * @param array  $expected
+	 * @param string $input
+	 */
+	public function testEmptyInputReturnProperly($expected, $input)
 	{
-		$expected      = array('');
-		$this->assertEquals($expected, $this->stringToArray->get(''));
+		$this->assertEquals($expected, $this->stringToArray->get($input));
 	}
 
 	public function testNotStringParameterThrowsException()
@@ -27,6 +31,45 @@ class StringToArrayTest extends \PHPUnit_Framework_TestCase
 		$this->setExpectedException('InvalidArgumentException');
 
 		$this->stringToArray->get(null);
+	}
+
+	public function dataProviderInput()
+	{
+		return array(
+			'basicCharacters' => array(
+				'expected' => array(
+					'a',
+					'b',
+					'c'
+				),
+				'input' => 'a,b,c'
+			),
+			'basicNumbers' => array(
+				'expected' => array(
+					'100',
+					'982',
+					'444',
+					'990',
+					'1'
+				),
+				'input'    => '100,982,444,990,1'
+			),
+			'emailAddress' => array(
+				'expected' => array(
+					'Mark',
+					'Anthony',
+					'marka@lib.de'
+				),
+				'input' => 'Mark,Anthony,marka@lib.de'
+			),
+			'onlyDelimiter' => array(
+				'expected'  => array(
+					'',
+					''
+				),
+				'input' => ','
+			),
+		);
 	}
 }
 

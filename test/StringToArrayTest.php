@@ -33,6 +33,25 @@ class StringToArrayTest extends \PHPUnit_Framework_TestCase
 		$this->stringToArray->get(null);
 	}
 
+	public function testMultiLineInput()
+	{
+		$input    = "211,22,35\n10,20,33";
+		$expected = array(
+			array(
+				'211',
+				'22',
+				'35'
+			),
+			array(
+				'10',
+				'20',
+				'33'
+			),
+		);
+
+		$this->assertEquals($expected, $this->stringToArray->get($input));
+	}
+
 	public function dataProviderInput()
 	{
 		return array(
@@ -69,6 +88,41 @@ class StringToArrayTest extends \PHPUnit_Framework_TestCase
 				),
 				'input' => ','
 			),
+			'multiLineNumbers' => array(
+				'expected' => array(
+					array(
+						'211',
+						'22',
+						'35'
+					),
+					array(
+						'10',
+						'20',
+						'33'
+					),
+				),
+				'input' => "211,22,35\n10,20,33"
+			),
+			'multiLineAddress' => array(
+				'expected' => array(
+					array(
+						'luxembourg',
+						'kennedy',
+						'44'
+					),
+					array(
+						'budapest',
+						'expo ter',
+						'5-7'
+					),
+					array(
+						'gyors',
+						'fo utca',
+						'9'
+					),
+				),
+				'input' => "luxembourg,kennedy,44\nbudapest,expo ter,5-7\ngyors,fo utca,9"
+			)
 		);
 	}
 }

@@ -33,32 +33,6 @@ class StringToArrayTest extends \PHPUnit_Framework_TestCase
 		$this->stringToArray->get(null);
 	}
 
-	public function testFirstLineIsLabel()
-	{
-		$input    = "#useFirstLineAsLabels\nName,Email,Phone\nMark,marc@be.com,998\nNoemi,noemi@ac.co.uk,888";
-		$expected = array(
-			'labels'=> array(
-				'Name',
-				'Email',
-				'Phone'
-			),
-			'data' => array(
-				array(
-					'Mark',
-					'marc@be.com',
-					'998'
-				),
-				array(
-					'Noemi',
-					'noemi@ac.co.uk',
-					'888'
-				),
-			),
-		);
-
-		$this->assertEquals($expected, $this->stringToArray->get($input));
-	}
-
 	public function dataProviderInput()
 	{
 		return array(
@@ -129,6 +103,28 @@ class StringToArrayTest extends \PHPUnit_Framework_TestCase
 					),
 				),
 				'input' => "luxembourg,kennedy,44\nbudapest,expo ter,5-7\ngyors,fo utca,9"
+			),
+			'hashMarked' => array(
+				'expected' => array(
+					'labels'=> array(
+						'Name',
+						'Email',
+						'Phone'
+					),
+					'data' => array(
+						array(
+							'Mark',
+							'marc@be.com',
+							'998'
+						),
+						array(
+							'Noemi',
+							'noemi@ac.co.uk',
+							'888'
+						),
+					),
+				),
+				'input' => "#useFirstLineAsLabels\nName,Email,Phone\nMark,marc@be.com,998\nNoemi,noemi@ac.co.uk,888"
 			)
 		);
 	}

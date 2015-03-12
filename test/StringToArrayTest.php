@@ -6,11 +6,27 @@ use Tdd\StringToArray;
 
 class StringToArrayTest extends \PHPUnit_Framework_TestCase
 {
+	/**
+	 * @var StringToArray
+	 */
+	protected $stringToArray;
+
+	public function setUp()
+	{
+		$this->stringToArray = new StringToArray();
+	}
+
 	public function testEmptyInputReturnProperly()
 	{
-		$stringToArray = new StringToArray();
 		$expected      = array('');
-		$this->assertEquals($expected, $stringToArray->get(''));
+		$this->assertEquals($expected, $this->stringToArray->get(''));
+	}
+
+	public function testNotStringParameterThrowsException()
+	{
+		$this->setExpectedException('InvalidArgumentException');
+
+		$this->stringToArray->get(null);
 	}
 }
 

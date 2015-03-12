@@ -18,6 +18,11 @@ class StringToArray
 	{
 		if ($this->isString($string))
 		{
+			if ($this->isMultiLine($string) && preg_match('/#useFirstLineAsLabels/', $string))
+			{
+				return $this->getLabeledStringAsArray($string);
+			}
+
 			if ($this->isMultiLine($string))
 			{
 
@@ -30,6 +35,18 @@ class StringToArray
 		{
 			throw new InvalidArgumentException('Not a string!');
 		}
+	}
+
+	protected function getLabeledStringAsArray($string)
+	{
+		$multiLine = $this->getMultiLineAsArray($string);
+		// Drop marker.
+		array_shift($multiLine);
+
+		$result['labels'] = array_shift($multiLine);
+		$result['data']   = $multiLine;
+
+		return $result;
 	}
 
 	/**

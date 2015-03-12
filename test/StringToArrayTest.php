@@ -33,19 +33,26 @@ class StringToArrayTest extends \PHPUnit_Framework_TestCase
 		$this->stringToArray->get(null);
 	}
 
-	public function testMultiLineInput()
+	public function testFirstLineIsLabel()
 	{
-		$input    = "211,22,35\n10,20,33";
+		$input    = "#useFirstLineAsLabels\nName,Email,Phone\nMark,marc@be.com,998\nNoemi,noemi@ac.co.uk,888";
 		$expected = array(
-			array(
-				'211',
-				'22',
-				'35'
+			'labels'=> array(
+				'Name',
+				'Email',
+				'Phone'
 			),
-			array(
-				'10',
-				'20',
-				'33'
+			'data' => array(
+				array(
+					'Mark',
+					'marc@be.com',
+					'998'
+				),
+				array(
+					'Noemi',
+					'noemi@ac.co.uk',
+					'888'
+				),
 			),
 		);
 

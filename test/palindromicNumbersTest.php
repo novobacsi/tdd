@@ -47,4 +47,13 @@ class PalindromicNumbersTest extends \PHPUnit_Framework_TestCase
 			),
 		);
 	}
+
+	public function testGetPalindromicNumber()
+	{
+		$palindromicNumber = new PalindromicNumbers();
+
+		$result = $palindromicNumber->getPalindromicNumber(11);
+
+		$this->assertEquals('11 gets palindromic after 0 steps: 11', $result);
+	}
 }

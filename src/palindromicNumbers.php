@@ -12,5 +12,18 @@ namespace Tdd;
 
 class PalindromicNumbers
 {
+	/**
+	 * Checks whether the given number is a palindromic one.
+	 *
+	 * @param int $number   The number.
+	 *
+	 * @return bool
+	 */
+	public function isPalindromic($number)
+	{
+		$reversedNumber = strrev($number);
+
+		return $reversedNumber == $number;
+	}
 
 } 

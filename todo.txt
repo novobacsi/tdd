@@ -1,5 +1,1 @@
 1.
-    - Checking for string type.
-    - Invalid type throws exception.
-3.
-    - a factory should create the required "exploder"

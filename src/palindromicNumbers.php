@@ -12,6 +12,8 @@ namespace Tdd;
 
 class PalindromicNumbers
 {
+	const MAX_STEP_COUNT = 1000;
+
 	/**
 	 * Checks whether the given number is a palindromic one.
 	 *
@@ -21,9 +23,32 @@ class PalindromicNumbers
 	 */
 	public function isPalindromic($number)
 	{
-		$reversedNumber = strrev($number);
+		return strrev($number) == $number;
+	}
 
-		return $reversedNumber == $number;
+	public function getPalindromicNumber($number)
+	{
+		$checkNumber = $reverseCheckNumber = $number;
+		$steps       = 0;
+
+		while ($steps !== self::MAX_STEP_COUNT)
+		{
+			if ($this->isPalindromic($checkNumber))
+			{
+				return $this->generateOutput($number, $steps, $checkNumber);
+			}
+
+			$checkNumber        = bcadd($checkNumber,strrev($reverseCheckNumber));
+			$reverseCheckNumber = $checkNumber;
+			$steps++;
+		}
+
+		return $number . ' isn\'t gets palindromic in ' . self::MAX_STEP_COUNT . ' steps.';
+	}
+
+	protected function generateOutput($number, $stepCount, $palindromicNumber)
+	{
+		return $number . ' gets palindromic after ' . $stepCount . ' steps: ' . $palindromicNumber;
 	}
 
 } 

@@ -6,7 +6,6 @@ use Tdd\PalindromicNumbers;
 
 class PalindromicNumbersTest extends \PHPUnit_Framework_TestCase
 {
-
 	/**
 	 * @dataProvider dataProviderTestInput
 	 * @param int  $input    The number.
@@ -16,7 +15,7 @@ class PalindromicNumbersTest extends \PHPUnit_Framework_TestCase
 	{
 		$palindromicNumber = new PalindromicNumbers();
 
-		$this->assertTrue($palindromicNumber->isPalindromic(11));
+		$this->assertEquals($palindromicNumber->isPalindromic($input), $expected);
 	}
 
 	public function dataProviderTestInput()
@@ -48,6 +47,4 @@ class PalindromicNumbersTest extends \PHPUnit_Framework_TestCase
 			),
 		);
 	}
-
 }
-

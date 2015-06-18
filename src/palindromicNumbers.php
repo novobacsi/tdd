@@ -12,12 +12,12 @@ namespace Tdd;
 
 class PalindromicNumbers
 {
-	const MAX_STEP_COUNT = 1000;
+	const MAX_STEP_COUNT = 10000;
 
 	/**
 	 * Checks whether the given number is a palindromic one.
 	 *
-	 * @param int $number   The number.
+	 * @param string $number   The number.
 	 *
 	 * @return bool
 	 */
@@ -50,5 +50,4 @@ class PalindromicNumbers
 	{
 		return $number . ' gets palindromic after ' . $stepCount . ' steps: ' . $palindromicNumber;
 	}
-
-} 
+}

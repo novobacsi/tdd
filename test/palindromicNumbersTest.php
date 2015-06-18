@@ -75,7 +75,7 @@ class PalindromicNumbersTest extends \PHPUnit_Framework_TestCase
 			),
 			array(
 				'input'    => 196,
-				'expected' => '196 isn\'t gets palindromic in 1000 steps.',
+				'expected' => '196 isn\'t gets palindromic in ' . PalindromicNumbers::MAX_STEP_COUNT . ' steps.',
 			),
 			array(
 				'input'    => 123,
